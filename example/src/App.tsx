@@ -1,10 +1,18 @@
 import React from 'react'
 
-import { ExampleComponent } from 'use-screen-size'
-import 'use-screen-size/dist/index.css'
+import useScreenSize from 'use-screen-size'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  const size = useScreenSize()
+
+  return (
+    <>
+      <h1>
+        {size.width}px / {size.height}px
+      </h1>
+      <h1>{size.screen}</h1>
+    </>
+  )
 }
 
 export default App
