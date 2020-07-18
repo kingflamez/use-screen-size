@@ -8,10 +8,15 @@
 
 ```bash
 npm install --save use-screen-size
+```
+
+```bash
 yarn add use-screen-size
 ```
 
 ## Example
+
+> This shows a quick example of displaying your screen width, screen height and current screen mode
 
 ```tsx
 import React from 'react'
@@ -48,7 +53,8 @@ const App = () => {
 
 3. `size.height` its is used to get the height of the screen in pixels
 
-## Complex Example
+## Advanced Example
+> This shows an advanced example of running conditional actions based on the screen size
 
 ```tsx
 import React, { useState, useEffect } from 'react'
@@ -95,6 +101,6 @@ const App = () => {
 
 ## License
 
-Follow on Twitter [@mrflamez_](https://twitter.com/mrflamez_)
+Follow on Twitter [@mrflamez\_](https://twitter.com/mrflamez_)
 
 MIT © [kingflamez](https://github.com/kingflamez)
