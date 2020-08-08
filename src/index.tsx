@@ -1,13 +1,14 @@
 import { useState, useEffect, useCallback } from 'react'
 
-enum ScreenSize {
+enum BreakPoint {
   xs = 'xs',
   s = 's',
   m = 'm',
   l = 'l',
   xl = 'xl'
 }
-// Hook
+
+// Screen Size Hook
 const useScreenSize = () => {
   const isClient = typeof window === 'object'
 
@@ -15,11 +16,11 @@ const useScreenSize = () => {
     return {
       width: isClient ? window.innerWidth : 0,
       height: isClient ? window.innerHeight : 0,
-      screen: ScreenSize.s
+      screen: BreakPoint.s
     }
   }, [isClient])
 
-  const [windowSize, setWindowSize] = useState(getSize)
+  const [screenSize, setScreenSize] = useState(getSize)
 
   useEffect(() => {
     if (!isClient) {
@@ -27,26 +28,27 @@ const useScreenSize = () => {
     }
 
     function handleResize () {
-      setWindowSize(getSize())
+      setScreenSize(getSize())
     }
 
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
-  }, [isClient, getSize]) // Empty array ensures that effect is only run on mount and unmount
+  }, [])
 
-  if (windowSize.width < 576) {
-    windowSize.screen = ScreenSize.xs
-  } else if (windowSize.width >= 576 && windowSize.width < 768) {
-    windowSize.screen = ScreenSize.s
-  } else if (windowSize.width >= 768 && windowSize.width < 992) {
-    windowSize.screen = ScreenSize.m
-  } else if (windowSize.width >= 992 && windowSize.width < 1200) {
-    windowSize.screen = ScreenSize.l
+  if (screenSize.width < 576) {
+    screenSize.screen = BreakPoint.xs
+  } else if (screenSize.width >= 576 && screenSize.width < 768) {
+    screenSize.screen = BreakPoint.s
+  } else if (screenSize.width >= 768 && screenSize.width < 992) {
+    screenSize.screen = BreakPoint.m
+  } else if (screenSize.width >= 992 && screenSize.width < 1200) {
+    screenSize.screen = BreakPoint.l
   } else {
-    windowSize.screen = ScreenSize.xl
+    screenSize.screen = BreakPoint.xl
   }
 
-  return windowSize
+  return screenSize
 }
 
-export { ScreenSize, useScreenSize as default }
+
+export { BreakPoint, useScreenSize as default }

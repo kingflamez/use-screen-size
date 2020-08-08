@@ -1,6 +1,6 @@
 {
   "name": "use-screen-size",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "This helps you write conditional code based on screen size, or get the screen size value ",
   "author": "kingflamez",
   "license": "MIT",

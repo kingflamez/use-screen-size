@@ -54,12 +54,13 @@ const App = () => {
 3. `size.height` its is used to get the height of the screen in pixels
 
 ## Advanced Example
+
 > This shows an advanced example of running conditional actions based on the screen size
 
 ```tsx
 import React, { useState, useEffect } from 'react'
 
-import useScreenSize, { ScreenSize } from 'use-screen-size'
+import useScreenSize, { BreakPoint } from 'use-screen-size'
 
 const App = () => {
   const size = useScreenSize()
@@ -67,20 +68,19 @@ const App = () => {
   const [screenSize, setScreenSize] = useState('')
 
   useEffect(() => {
-    if (size.screen == ScreenSize.xs) {
+    if (size.screen == BreakPoint.xs) {
       setColor('red')
       setScreenSize('Extra Small Screen eg Mobile Phones(Portrait Mode)')
-    } else if (size.screen === ScreenSize.s) {
+    } else if (size.screen === BreakPoint.s) {
       setColor('blue')
-      setScreenSize('Small')
       setScreenSize('Small Screen eg Mobile Phones(Landscape Mode)')
-    } else if (size.screen === ScreenSize.m) {
+    } else if (size.screen === BreakPoint.m) {
       setColor('orange')
       setScreenSize('Medium Screen eg Tablet')
-    } else if (size.screen === ScreenSize.l) {
+    } else if (size.screen === BreakPoint.l) {
       setColor('yellowgreen')
       setScreenSize('Large Screen eg Laptop, PC')
-    } else if (size.screen === ScreenSize.xl) {
+    } else if (size.screen === BreakPoint.xl) {
       setColor('darkmagenta')
       setScreenSize('Extra Large Screen eg Laptop, PC')
     }
