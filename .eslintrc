@@ -4,23 +4,26 @@
     "standard",
     "standard-react",
     "plugin:prettier/recommended",
-    "prettier/standard",
-    "prettier/react",
+    "prettier",
+    "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/eslint-recommended"
   ],
   "env": {
-    "node": true
+    "node": true,
+    "browser": true,
+    "es2020": true
   },
   "parserOptions": {
     "ecmaVersion": 2020,
+    "sourceType": "module",
     "ecmaFeatures": {
-      "legacyDecorators": true,
-      "jsx": true
+      "jsx": true,
+      "legacyDecorators": true
     }
   },
   "settings": {
     "react": {
-      "version": "16"
+      "version": "detect"
     }
   },
   "rules": {
@@ -29,6 +32,15 @@
     "react/jsx-handler-names": 0,
     "react/jsx-fragments": 0,
     "react/no-unused-prop-types": 0,
-    "import/export": 0
+    "import/export": 0,
+    "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
+    "react/react-in-jsx-scope": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { "argsIgnorePattern": "^_" }
+    ],
+    "@typescript-eslint/no-explicit-any": "error",
+    "prefer-const": "warn"
   }
 }

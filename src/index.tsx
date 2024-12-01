@@ -1,54 +1,90 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react';
 
-enum BreakPoint {
+export enum BreakPoint {
   xs = 'xs',
   s = 's',
   m = 'm',
   l = 'l',
-  xl = 'xl'
+  xl = 'xl',
 }
 
-// Screen Size Hook
-const useScreenSize = () => {
-  const isClient = typeof window === 'object'
+export interface ScreenSize {
+  width: number;
+  height: number;
+  screen: BreakPoint;
+}
 
-  const getSize = useCallback(() => {
-    return {
-      width: isClient ? window.innerWidth : 0,
-      height: isClient ? window.innerHeight : 0,
-      screen: BreakPoint.s
-    }
-  }, [isClient])
+export interface BreakPointConfig {
+  xs: number;
+  s: number;
+  m: number;
+  l: number;
+  xl: number;
+}
 
-  const [screenSize, setScreenSize] = useState(getSize)
+export const DEFAULT_BREAKPOINTS: BreakPointConfig = {
+  xs: 576,
+  s: 768,
+  m: 992,
+  l: 1200,
+  xl: Infinity,
+};
+
+const useScreenSize = (
+  breakpoints: BreakPointConfig = DEFAULT_BREAKPOINTS,
+  debounceMs = 250,
+): ScreenSize => {
+  const isClient = typeof window === 'object';
+
+  const getSize = useCallback((): ScreenSize => {
+    const width = isClient ? window.innerWidth : 0;
+    const height = isClient ? window.innerHeight : 0;
+
+    let screen: BreakPoint = BreakPoint.xl;
+    if (width < breakpoints.xs) screen = BreakPoint.xs;
+    else if (width < breakpoints.s) screen = BreakPoint.s;
+    else if (width < breakpoints.m) screen = BreakPoint.m;
+    else if (width < breakpoints.l) screen = BreakPoint.l;
+
+    return { width, height, screen };
+  }, [isClient, breakpoints]);
+
+  const [screenSize, setScreenSize] = useState<ScreenSize>(getSize);
 
   useEffect(() => {
     if (!isClient) {
-      return
+      return;
     }
 
-    function handleResize () {
-      setScreenSize(getSize())
+    let timeoutId: NodeJS.Timeout;
+
+    function handleResize(): void {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setScreenSize(getSize());
+      }, debounceMs);
     }
 
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
+    window.addEventListener('resize', handleResize);
+    return (): void => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(timeoutId);
+    };
+  }, [isClient, getSize, debounceMs]);
 
-  if (screenSize.width < 576) {
-    screenSize.screen = BreakPoint.xs
-  } else if (screenSize.width >= 576 && screenSize.width < 768) {
-    screenSize.screen = BreakPoint.s
-  } else if (screenSize.width >= 768 && screenSize.width < 992) {
-    screenSize.screen = BreakPoint.m
-  } else if (screenSize.width >= 992 && screenSize.width < 1200) {
-    screenSize.screen = BreakPoint.l
-  } else {
-    screenSize.screen = BreakPoint.xl
-  }
+  const screen = useMemo(() => {
+    const { width } = screenSize;
+    if (width < breakpoints.xs) return BreakPoint.xs;
+    if (width < breakpoints.s) return BreakPoint.s;
+    if (width < breakpoints.m) return BreakPoint.m;
+    if (width < breakpoints.l) return BreakPoint.l;
+    return BreakPoint.xl;
+  }, [screenSize.width, breakpoints]);
 
-  return screenSize
-}
+  return {
+    ...screenSize,
+    screen,
+  };
+};
 
-
-export { BreakPoint, useScreenSize as default }
+export default useScreenSize;
