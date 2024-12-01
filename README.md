@@ -19,12 +19,12 @@ yarn add use-screen-size
 > This shows a quick example of displaying your screen width, screen height and current screen mode
 
 ```tsx
-import React from 'react'
+import React from 'react';
 
-import useScreenSize from 'use-screen-size'
+import useScreenSize from 'use-screen-size';
 
 const App = () => {
-  const size = useScreenSize()
+  const size = useScreenSize();
 
   return (
     <>
@@ -33,8 +33,8 @@ const App = () => {
       </h1>
       <h1>{size.screen}</h1>
     </>
-  )
-}
+  );
+};
 ```
 
 ## Helpful Methods
@@ -58,33 +58,33 @@ const App = () => {
 > This shows an advanced example of running conditional actions based on the screen size
 
 ```tsx
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 
-import useScreenSize, { BreakPoint } from 'use-screen-size'
+import useScreenSize, { BreakPoint } from 'use-screen-size';
 
 const App = () => {
-  const size = useScreenSize()
-  const [color, setColor] = useState('')
-  const [screenSize, setScreenSize] = useState('')
+  const size = useScreenSize();
+  const [color, setColor] = useState('');
+  const [screenSize, setScreenSize] = useState('');
 
   useEffect(() => {
     if (size.screen == BreakPoint.xs) {
-      setColor('red')
-      setScreenSize('Extra Small Screen eg Mobile Phones(Portrait Mode)')
+      setColor('red');
+      setScreenSize('Extra Small Screen eg Mobile Phones(Portrait Mode)');
     } else if (size.screen === BreakPoint.s) {
-      setColor('blue')
-      setScreenSize('Small Screen eg Mobile Phones(Landscape Mode)')
+      setColor('blue');
+      setScreenSize('Small Screen eg Mobile Phones(Landscape Mode)');
     } else if (size.screen === BreakPoint.m) {
-      setColor('orange')
-      setScreenSize('Medium Screen eg Tablet')
+      setColor('orange');
+      setScreenSize('Medium Screen eg Tablet');
     } else if (size.screen === BreakPoint.l) {
-      setColor('yellowgreen')
-      setScreenSize('Large Screen eg Laptop, PC')
+      setColor('yellowgreen');
+      setScreenSize('Large Screen eg Laptop, PC');
     } else if (size.screen === BreakPoint.xl) {
-      setColor('darkmagenta')
-      setScreenSize('Extra Large Screen eg Laptop, PC')
+      setColor('darkmagenta');
+      setScreenSize('Extra Large Screen eg Laptop, PC');
     }
-  }, [size])
+  }, [size]);
 
   return (
     <>
@@ -95,12 +95,36 @@ const App = () => {
         {size.screen.toUpperCase()} {screenSize}
       </h1>
     </>
-  )
-}
+  );
+};
 ```
+
+## Configuration Options
+
+The hook accepts the following configuration options:
+
+| Option        | Type               | Default                                              | Description                                      |
+| ------------- | ------------------ | ---------------------------------------------------- | ------------------------------------------------ |
+| `breakpoints` | `BreakPointConfig` | `{ xs: 576, s: 768, m: 992, l: 1200, xl: Infinity }` | Define custom screen size breakpoints.           |
+| `debounceMs`  | `number`           | `250`                                                | Debounce time in milliseconds for resize events. |
+
+Example:
+
+```tsx
+const breakpoints = {
+  xs: 500,
+  s: 700,
+  m: 900,
+  l: 1100,
+  xl: Infinity
+}
+
+const size = useScreenSize(breakpoints, 300) // Custom breakpoints and debounce time
+
 
 ## License
 
-Follow on Twitter [@mrflamez\_](https://twitter.com/mrflamez_)
+Follow on Twitter [@__wole__](https://twitter.com/__wole__)
 
 MIT © [kingflamez](https://github.com/kingflamez)
+```
