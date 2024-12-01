@@ -21,7 +21,7 @@ yarn add use-screen-size
 ```tsx
 import React from 'react';
 
-import useScreenSize from 'use-screen-size';
+import { useScreenSize } from 'use-screen-size';
 
 const App = () => {
   const size = useScreenSize();
@@ -60,7 +60,7 @@ const App = () => {
 ```tsx
 import React, { useState, useEffect } from 'react';
 
-import useScreenSize, { BreakPoint } from 'use-screen-size';
+import { BreakPoint, useScreenSize } from 'use-screen-size';
 
 const App = () => {
   const size = useScreenSize();

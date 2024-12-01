@@ -30,7 +30,7 @@ export const DEFAULT_BREAKPOINTS: BreakPointConfig = {
   xl: Infinity,
 };
 
-const useScreenSize = (
+export const useScreenSize = (
   breakpoints: BreakPointConfig = DEFAULT_BREAKPOINTS,
   debounceMs = 250,
 ): ScreenSize => {
@@ -86,5 +86,3 @@ const useScreenSize = (
     screen,
   };
 };
-
-export default useScreenSize;

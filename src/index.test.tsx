@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import useScreenSize, { BreakPoint, DEFAULT_BREAKPOINTS } from './index';
+import { BreakPoint, DEFAULT_BREAKPOINTS, useScreenSize } from './index';
 
 describe('useScreenSize', () => {
   beforeAll(() => {
