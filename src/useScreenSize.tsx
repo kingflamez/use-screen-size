@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 
 export enum BreakPoint {
   xs = "xs",
@@ -34,7 +34,7 @@ export const useScreenSize = (
   breakpoints: BreakPointConfig = DEFAULT_BREAKPOINTS,
   debounceMs = 250
 ): ScreenSize => {
-  const isClient = typeof window === "object";
+  const isClient = typeof window !== "undefined" && window !== null;
 
   const getSize = useCallback((): ScreenSize => {
     const width = isClient ? window.innerWidth : 0;
