@@ -14,11 +14,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-          cache: 'npm'
-
-      - run: npm install
-      - run: npm run test
-      - run: npm run build
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - run: yarn test
+      - run: yarn build
 
   publish:
     needs: build
@@ -29,9 +28,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-          cache: 'npm'
-
-      - run: npm ci
-      - run: npm publish
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - run: yarn publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -21,7 +21,8 @@
     "example": "npm run start --prefix example/example-app",
     "example:install": "npm install --prefix example/example-app",
     "example:build": "npm run build --prefix example/example-app",
-    "start": "npm run example"
+    "start": "npm run example",
+    "publish:public": "yarn publish --access public"
   },
   "jest": {
     "preset": "ts-jest",
