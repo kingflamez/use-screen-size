@@ -29,6 +29,7 @@ jobs:
         with:
           node-version: '18.18.0'
           cache: 'yarn'
+          always-auth: true
       - run: yarn install --frozen-lockfile
       - run: yarn publish --access public
         env:
