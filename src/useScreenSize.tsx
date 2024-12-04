@@ -1,13 +1,5 @@
-/* eslint-disable no-unused-vars */
 import { useState, useEffect, useCallback, useMemo } from "react";
-
-export enum BreakPoint {
-  xs = "xs",
-  s = "s",
-  m = "m",
-  l = "l",
-  xl = "xl",
-}
+import { BreakPoint } from "./constants";
 
 export interface ScreenSize {
   width: number;
@@ -80,7 +72,7 @@ export const useScreenSize = (
     if (width < breakpoints.m) return BreakPoint.m;
     if (width < breakpoints.l) return BreakPoint.l;
     return BreakPoint.xl;
-  }, [screenSize.width, breakpoints]);
+  }, [screenSize, breakpoints]);
 
   return {
     ...screenSize,
