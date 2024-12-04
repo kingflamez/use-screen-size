@@ -1,36 +1,25 @@
-name: Node.js CI
+name: Publish Package to npm
 
 on:
-  push:
-    branches:
-      - master
+  release:
+    types: [published]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '18.18.0'
-          cache: 'yarn'
-      - run: yarn install --frozen-lockfile
-      - run: yarn test
-      - run: yarn build
+      - uses: actions/checkout@v4
 
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '18.18.0'
-          cache: 'yarn'
-          always-auth: true
-      - run: yarn install --frozen-lockfile
-      - run: yarn publish --access public
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Publish to npm
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
