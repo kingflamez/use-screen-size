@@ -1,6 +1,6 @@
 {
   "name": "use-screen-size",
-  "version": "1.4.7",
+  "version": "1.4.8",
   "description": "A React hook to get the current screen size and breakpoint or write conditional code based on screen size",
   "main": "dist/use-screen-size.umd.js",
   "module": "dist/use-screen-size.es.js",
@@ -14,7 +14,7 @@
     "dev": "vite",
     "clean": "rimraf dist",
     "build": "npm run clean && vite build && tsc -p tsconfig.build.json",
-    "postinstall": "node postinstall.js",
+    "postinstall": "if [ -f ./postinstall.js ]; then node postinstall.js; else echo 'postinstall.js not found'; fi",
     "lint": "eslint .",
     "preview": "vite preview"
   },
