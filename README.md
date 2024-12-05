@@ -121,7 +121,7 @@ const breakpoints = {
 }
 
 const size = useScreenSize(breakpoints, 300) // Custom breakpoints and debounce time
-
+```
 
 ## License
 
