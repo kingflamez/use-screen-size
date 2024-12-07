@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -27,6 +29,16 @@ jobs:
           TAG=${GITHUB_REF#refs/tags/}
           echo "Updating package.json version to $TAG"
           npm version $TAG --no-git-tag-version
+
+      - name: Commit and push version update
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add package.json package-lock.json
+          git commit -m "Update package.json to version $TAG"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fix pkg
         run: npm pkg fix
