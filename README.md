@@ -132,4 +132,3 @@ const size = useScreenSize(breakpoints, 300) // Custom breakpoints and debounce 
 Follow on Twitter [@__wole__](https://twitter.com/__wole__)
 
 MIT © [kingflamez](https://github.com/kingflamez)
-```
