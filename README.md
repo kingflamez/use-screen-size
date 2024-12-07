@@ -2,7 +2,11 @@
 
 > This helps you write conditional code based on screen size, or get the screen size value
 
-[![NPM](https://img.shields.io/npm/v/use-screen-size.svg)](https://www.npmjs.com/package/use-screen-size) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![NPM](https://img.shields.io/npm/dm/use-screen-size.svg)](https://www.npmjs.com/package/use-screen-size)
+[![NPM](https://img.shields.io/npm/v/use-screen-size.svg)](https://www.npmjs.com/package/use-screen-size)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/dm/use-screen-size.svg)](https://www.npmjs.com/package/use-screen-size)
+![Total Downloads](https://img.shields.io/npm/dt/use-screen-size)
+
 
 
 ## Install
