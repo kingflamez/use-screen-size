@@ -1,6 +1,6 @@
 {
   "name": "use-screen-size",
-  "version": "1.4.10",
+  "version": "1.4.11",
   "description": "A React hook to get the current screen size and breakpoint or write conditional code based on screen size",
   "main": "dist/use-screen-size.umd.js",
   "module": "dist/use-screen-size.es.js",
